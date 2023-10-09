@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-10-03T01:27:22.451Z",
+    "end": "2023-10-03T01:27:44.096Z",
+    "duration": 21645,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8eb4d469-17aa-4662-a3de-129ecc5b685b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\admin_accept_company.js",
+      "file": "cypress\\e2e\\admin_accept_company.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c8b15aa2-4618-4c50-aef7-04b8eb8b24fb",
+          "title": "OJTPH Log in",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User should be able to log in",
+              "fullTitle": "OJTPH Log in User should be able to log in",
+              "timedOut": null,
+              "duration": 18872,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  {\n    \"title\": \"cypress-mochawesome-reporter-videos-failed\",\n    \"value\": \"cypress\\\\e2e\\\\admin_accept_company.js\"\n  },\n  {\n    \"title\": \"cypress-mochawesome-reporter-screenshots\",\n    \"value\": [\n      [\n        \"\\\\admin_accept_company.js\\\\OJTPH Log in -- User should be able to log in (failed).png\"\n      ]\n    ]\n  }\n]",
+              "code": "cy.on('uncaught:exception', () => {\n  return false;\n});\n//input username\ncy.get('#input-username').type(user.username).should('have.value', user.username);\ncy.wait(2000);\n//input password\ncy.get('#input-password').type(user.password).should('have.value', user.password);\ncy.wait(2000);\n//show & hide password\nif (enable_showpass) {\n  cy.get('[class=\"fa fa-eye prevent-select\"]').parents('div[class=\"suffix-ico\"]').find('span').should('be.visible').click().wait(2000);\n}\n//log in \ncy.get('[class=\"h-full w-full prevent-select button\"]').parents('div[class=\"forms-btn\"]').find('button').contains('Log In').should('be.visible').click();\ncy.wait(5000);\n//click companies tab\ncy.get('div[class=\"links\"]').parents('div[class=\"navlinks prevent-select\"]').contains('Companies').should('be.visible').click();\ncy.wait(2000);\n//search company from the list\ncy.get('#search').type(companyname).should('have.value', companyname);\ncy.wait(2000);\n//select company\ncy.get('.overflow-auto > .w-full > .card > .card-content > .flex').contains(companyname).click();\ncy.wait(2000);\n//click accept button\nif (acceptbtn) {\n  cy.get('.top-container > .btn-choices > .btn-choices-button').contains('Accept').click();\n  cy.wait(2000);\n}\n//click decline button\nif (declinetbtn) {\n  cy.get('.top-container > .btn-choices > .btn-choices-button').contains('Decline').click();\n  cy.wait(2000);\n}\n//reason for declining \nif (enable_decline) {\n  cy.get('#reasonDecline').click();\n  if (reason === 'Reason1') {\n    cy.contains('Not Interested').click();\n  } else if (reason === 'Reason2') {\n    cy.contains('Not A Good Fit').click();\n  } else if (reason === 'Reason3') {\n    cy.contains('Not Enough Time').click();\n  } else if (reason === 'Reason4') {\n    cy.contains('Other').click();\n  }\n  cy.get('#reasonDecline').should('be.visible');\n  cy.wait(500);\n}\n//decline message\nif (enable_declinebtn) {\n  cy.get('#message').type(declinemessage);\n  cy.wait(500);\n}\n//cancel button\nif (cancelbtn) {\n  cy.get('app-button[label=\"Cancel\"]').parents('div[class=\"formBtn\"]').contains('Cancel').click();\n  cy.wait(500);\n}\n//submit button\nif (submitbtn) {\n  cy.get('app-button[label=\"Submit\"]').parents('div[class=\"formBtn\"]').contains('Submit').click();\n  cy.wait(500);\n}\n//Confirm Button (Verification Modal), enable this line of codes if needed\nif (enable_confirmbtn) {\n  cy.get('[class=\"h-full w-full prevent-select button\"]').parents('app-button[class=\"button primary\"]').find('button').contains('Confirm').should('be.visible').click().wait(2000);\n}\n//click username icon\nif (usernameicon) {\n  cy.get('div[class=\"header-items_right-username relative py-2 px-2 rounded cursor-pointer prevent-select\"]').contains(user.username).should('be.visible').click();\n  cy.wait(2000);\n}\n//sign out\nif (enable_signout) {\n  cy.get('[class=\"h-full w-full prevent-select button\"]').parents('app-button[class=\"button\"]').find('button').contains('SIGN OUT').should('be.visible').click();\n  cy.wait(2000);\n}",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[class=\"links\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[class=\"links\"]`, but never found it.\n    at Context.eval (webpack://ojtph_automation/./cypress/e2e/admin_accept_company.js:78:15)",
+                "diff": null
+              },
+              "uuid": "150ba979-fc1c-4611-9494-0f719d3458b6",
+              "parentUUID": "c8b15aa2-4618-4c50-aef7-04b8eb8b24fb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "150ba979-fc1c-4611-9494-0f719d3458b6"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18872,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
