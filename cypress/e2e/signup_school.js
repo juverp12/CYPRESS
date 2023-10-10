@@ -2,18 +2,18 @@
 describe('School Admin Registration', () => {
 
     //visit link
-    const weblink = 'http://localhost:4200/home';
+    const weblink = 'https://ojtph.com';
 
     //School Information (Step 1)
-    const schoolName = 'School 4 University';
+    const schoolName = 'School 2 University';
     const schoolType = 'Option1';
     const schoolRegNum = '123456789';
     const schoolSize = 'Option1';
     const date = '2000-10-12';
-    const website = 'www.school4.edu.ph/';
+    const website = 'www.school1.edu.ph/';
 
     //School Affiliations (Step 2)
-    const affiliation = 'Option2';
+    const affiliation = 'Option1';
 
     //Contact Details (Step 3)
     const email = 'school4@gmail.com';
@@ -33,10 +33,10 @@ describe('School Admin Registration', () => {
     //Documents Upload (Step 5)
 
     //Account Credentials (Step 6)
-    const alternateEmail = 'school4@gmail.com';
-    const username = 'School4!';
-    const password = 'School4!';
-    const passwordConfirm = 'School4!';
+    const alternateEmail = 'school1@gmail.com';
+    const username = 'School1!';
+    const password = 'School1!';
+    const passwordConfirm = 'School1!';
 
     //controller to enable or disable a function
     const enable_register = false;
@@ -75,7 +75,7 @@ describe('School Admin Registration', () => {
         //     .click()
         //     .should('be.visible')
         // cy.wait(500)
-    
+
 
         //click confirm button
         cy.get('button[class="h-full w-full prevent-select button"]')
@@ -173,7 +173,7 @@ describe('School Admin Registration', () => {
         cy.get('#affiliation').click()
 
         if (affiliation === 'Option1') {
-            cy.contains('Department Of Education').click();
+            cy.contains('Catholic Schools').click();
         } else if (affiliation === 'Option2') {
             cy.contains('Commission On Higher Education').click();
         } else if (affiliation === 'Option3') {
@@ -305,18 +305,20 @@ describe('School Admin Registration', () => {
 
         //select country and change the Country into "Option1" or "Option2"......from the code
         cy.get('#country').click()
+        cy.get('#country-option > [tabindex="0"]').click()
 
         if (country === 'Option1') {
             cy.contains('Philippines').click();
         } else if (country === 'Option2') {
-            cy.contains('Us').click();
+            cy.contains('US').click();
         }
         cy.get('#country')
             .should('be.visible');
-        cy.wait(500)
+        cy.wait(2000)
 
         //select region and change the Region into "Option1" or "Option2"......from the code
-        cy.get('#region').click()
+        cy.get('.text-input flex > .text')
+            .click()
 
         if (region === 'Option1') {
             cy.contains('Western Visayas').click();
@@ -412,10 +414,10 @@ describe('School Admin Registration', () => {
 
         //register button
         if (enable_register) {
-        cy.get('button[class="h-full w-full prevent-select button primary"]')
-            .contains('Register')
-            .click()
-        cy.wait(5000)
+            cy.get('button[class="h-full w-full prevent-select button primary"]')
+                .contains('Register')
+                .click()
+            cy.wait(5000)
         }
 
         //close button, enable this line of codes if needed
@@ -440,29 +442,29 @@ describe('School Admin Registration', () => {
 
         //home button for success registration
         if (enable_homebtn) {
-        cy.get('[ng-reflect-fade-in="true"] > .popup-container > .background > .pop > .contain > .footer > .container-btn > .primary > .h-full')
-        .contains('Home')
-            .click()
-        cy.wait(5000)
+            cy.get('[ng-reflect-fade-in="true"] > .popup-container > .background > .pop > .contain > .footer > .container-btn > .primary > .h-full')
+                .contains('Home')
+                .click()
+            cy.wait(5000)
         }
 
         //Confirm Button (Verification Modal), enable this line of codes if needed
-        if (enable_confirmbtn){
-        cy.get('[class="h-full w-full prevent-select button"]')
-            .parents('app-button[class="button primary"]')
-            .find('button')
-            .contains('Confirm')
-            .should('be.visible')
-            .click()
-            .wait(5000)
+        if (enable_confirmbtn) {
+            cy.get('[class="h-full w-full prevent-select button"]')
+                .parents('app-button[class="button primary"]')
+                .find('button')
+                .contains('Confirm')
+                .should('be.visible')
+                .click()
+                .wait(5000)
         }
 
         //retry button for failed registration, enable this line of codes if needed
-        if (enable_retrybtn){
+        if (enable_retrybtn) {
             cy.get('button[class="h-full w-full prevent-select button"]')
-            .contains('Retry')
-            .click()
-            }
+                .contains('Retry')
+                .click()
+        }
 
     })
 })

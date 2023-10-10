@@ -3,17 +3,16 @@ import '@percy/cypress'
 describe('OJTPH Log in', () => {
 
     //visit link
-    const weblink = 'http://localhost:4200/home';
+    const weblink = 'https://ojtph.com';
 
     //controller to enable or disable a function
     const enable_showpass = false;
-    const enable_signout = false;
-    const enable_confirmbtn = true;
+    const enable_signout = true;
+    const enable_confirmbtn = false;
 
     const users = [
-        // { username: 'sadmin', password: 'P@ssw0rd!' },
+        { username: 'sadmin', password: 'P@ssw0rd!' },
         // { username: 'NewCompany1', password: 'NewCompany1' },
-        { username: 'Newcompany2!', password: 'Newcompany2!' }
     ];
 
     beforeEach(() => {

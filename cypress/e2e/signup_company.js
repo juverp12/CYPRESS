@@ -2,22 +2,22 @@
 describe('Company Admin Registration', () => {
 
     //visit link
-    const weblink = 'http://localhost:4200/home';
+    const weblink = 'https://ojtph.com';
 
     //Company Information (Step 1)
-    const companyName = 'New Company 1';
+    const companyName = 'New Company 2';
     const companySize = 'Option1';
     const companyRegType = 'Option2';
     const taxOrVatID = '12345';
-    const companyWebsite = 'newcompany1.com';
+    const companyWebsite = 'newcompany2.com';
     const industry = 'Option1';
     const companyRegNum = '123456';
 
     //Contact Details (Step 2)
-    const companyemail = 'newcompany@gmail1.com';
+    const companyemail = 'newcompany@gmail2.com';
     const socMedType = 'Option1';
     const companyNumber = '(912) 334-0230';
-    const socMedLink = 'newcompany1.com';
+    const socMedLink = 'newcompany2.com';
 
     //Physical Address (Step 3)
     const country = 'Option1';
@@ -30,10 +30,10 @@ describe('Company Admin Registration', () => {
     //Documents Upload (Step 4)
 
     //Account Credentials (Step 5)
-    const email = 'newcompany@gmail1.com';
-    const username = 'Newcompany1!';
-    const password = 'Newcompany1!';
-    const passwordConfirm = 'Newcompany1!';
+    const email = 'newcompany@gmail2.com';
+    const username = 'Newcompany2!';
+    const password = 'Newcompany2!';
+    const passwordConfirm = 'Newcompany2!';
 
     //controller to enable or disable a function
     const enable_register = false;
@@ -287,9 +287,10 @@ describe('Company Admin Registration', () => {
         //physical address
         //select country and change the Country into "Option1" or "Option2"......from the code
         cy.get('#country').click()
+        cy.get('#country-option > [tabindex="0"]').click()
 
         if (country === 'Option1') {
-            cy.contains('Philippines').click();
+            cy.contains('Philippines').click({ force: true });
         } else if (country === 'Option2') {
             cy.contains('Us').click();
         }
@@ -380,17 +381,16 @@ describe('Company Admin Registration', () => {
             .selectFile('cypress/fixtures/OJTPH.pdf', { force: true })
         cy.wait(500)
 
-        //upload file (dti registration)
-        cy.get('[uploadlabel="DTI Registration"] > .main-container > .file-upload-outside > .file-upload > .file-input')
-            .click()
+        //upload file (other files-optional)
+        cy.get('.ng-untouched > .ng-tns-c93-0 > .main-container > .file-upload-outside > .file-upload > .file-input')
             .selectFile('cypress/fixtures/OJTPH.pdf', { force: true })
         cy.wait(500)
 
-        //upload file (other files-optional)
-        cy.get('[selectedfiletype="pdf"] > .main-container > .file-upload-outside > .file-upload > .file-input')
-            .click()
+        //upload file (dti registration)
+        cy.get('.file-upload-outside > .file-upload > .file-input')
             .selectFile('cypress/fixtures/OJTPH.pdf', { force: true })
         cy.wait(500)
+
 
         //add more files
         // cy.get('.pad-0 > .hold-contain > .button.ng-tns-c93-0 > .h-full')
@@ -403,6 +403,17 @@ describe('Company Admin Registration', () => {
             .should('be.visible')
             .click()
         cy.wait(500)
+
+        //file upload notice.
+        cy.get('.checkmark').click()
+        cy.wait(500)
+
+        //click continue
+        cy.get(':nth-child(4) > .popup-container > .background > .pop > .contain > .footer > :nth-child(1) > .primary > .h-full')
+            .contains('Continue')
+            .click()
+        cy.wait(500)
+
 
         //account credentials
         //email
@@ -464,7 +475,7 @@ describe('Company Admin Registration', () => {
 
         //home button for success registration
         if (enable_homebtn) {
-            cy.get('[ng-reflect-fade-in="true"] > .popup-container > .background > .pop > .contain > .footer > .container-btn > .primary > .h-full')
+            cy.get(':nth-child(5) > .popup-container > .background > .pop > .contain > .footer > .container-btn > .primary > .h-full')
                 .contains('Home')
                 .click()
             cy.wait(5000)

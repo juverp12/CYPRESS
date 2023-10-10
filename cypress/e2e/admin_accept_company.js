@@ -2,10 +2,10 @@
 describe('OJTPH Log in', () => {
 
     //visit link
-    const weblink = 'http://localhost:4200/home';
+    const weblink = 'https://ojtph-angular-testing-env.vercel.app/home';
 
     //type companyname to search
-    const companyname = 'New Company 4';
+    const companyname = 'New Company 1';
 
     //reason for declining
     const reason = 'Reason1';
